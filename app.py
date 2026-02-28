@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, send_file
+from flask import Flask, jsonify, request, send_file, render_template
 from services.youtube_service import YouTubeService
 from services.database_service import DatabaseService
 from services.analytics_service import AnalyticsService
@@ -12,6 +12,10 @@ def create_app():
     # Initialize services
     yt = YouTubeService(api_key=None)
     db = DatabaseService()  # Single instance reused across routes
+
+    @app.route('/', methods=['GET'])
+    def index():
+        return render_template('index.html')
 
     @app.route('/refresh', methods=['GET'])
     def refresh():

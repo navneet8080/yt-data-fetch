@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YT Data Dashboard</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fa-brands fa-youtube icon-logo"></i>
+                <h2>Dashboard</h2>
+            </div>
+            <nav>
+                <ul>
+                    <li class="active"><a href="#"><i class="fas fa-home"></i> Overview</a></li>
+                    <li><a href="#" id="refresh-btn"><i class="fas fa-sync-alt"></i> Sync Data</a></li>
+                    <li><a href="/export" id="export-btn" target="_blank"><i class="fas fa-file-csv"></i> Export CSV</a></li>
+                    <li><a href="#" id="export-sheets-btn"><i class="fas fa-table"></i> To Google Sheets</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="topbar">
+                <h1>Channel Overview</h1>
+                <div class="user-profile">
+                    <img src="https://ui-avatars.com/api/?name=User&background=6366f1&color=fff" alt="User">
+                </div>
+            </header>
+
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-video"></i></div>
+                    <div class="stat-info">
+                        <h3>Total Videos</h3>
+                        <p id="total-videos">-</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-eye"></i></div>
+                    <div class="stat-info">
+                        <h3>Total Views</h3>
+                        <p id="total-views">-</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-thumbs-up"></i></div>
+                    <div class="stat-info">
+                        <h3>Total Likes</h3>
+                        <p id="total-likes">-</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-comments"></i></div>
+                    <div class="stat-info">
+                        <h3>Total Comments</h3>
+                        <p id="total-comments">-</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="table-container">
+                <div class="table-header">
+                    <h2>Recent Videos</h2>
+                </div>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Thumbnail</th>
+                                <th>Video Title</th>
+                                <th>Published date</th>
+                                <th>Views</th>
+                                <th>Likes</th>
+                                <th>Comments</th>
+                            </tr>
+                        </thead>
+                        <tbody id="videos-table-body">
+                            <!-- Populated via JS -->
+                            <tr>
+                                <td colspan="6" style="text-align: center; color: var(--text-muted); padding: 2rem;">Loading data...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <!-- Notification Toast -->
+    <div id="toast" class="toast hidden">
+        <span id="toast-message">Action successful!</span>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
